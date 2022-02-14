@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,19 +14,30 @@ public class profitday : MonoBehaviour
 
     public void Start()
     {
-        SetNewProfit();
+        LoadDay();
     }
 
-    public void SetNewProfit()
+    public void SaveDay()
     {
-        PlayerPrefs.SetInt("newDayMoney", info.money);
-        text[0].text = PlayerPrefs.GetInt("newDayMoney") + "(" + (PlayerPrefs.GetInt("newDayMoney") - moneyCount) + ")";
-        moneyCount = PlayerPrefs.GetInt("newDayMoney");
-        PlayerPrefs.SetInt("newDayPrestige", info.ratingMarket);
-        text[1].text = PlayerPrefs.GetInt("newDayPrestige") + "(" + (PlayerPrefs.GetInt("newDayPrestige") - prestigeCount) + ")";
-        prestigeCount = PlayerPrefs.GetInt("newDayPrestige");
-        PlayerPrefs.SetInt("Day", dayCount);
-        text[2].text = PlayerPrefs.GetInt("Day") + "";
+        PlayerPrefs.SetInt("SavedMoney", info.money);
+        PlayerPrefs.SetInt("SavedPrestige", info.ratingMarket);
+        PlayerPrefs.SetInt("SavedDays", dayCount);
         PlayerPrefs.Save();
+    }
+    public void LoadDay()
+    {
+        if(PlayerPrefs.HasKey("SavedMoney"))
+        {
+            info.money = PlayerPrefs.GetInt("SavedMoney");
+            info.ratingMarket = PlayerPrefs.GetInt("SavedPrestige");
+            dayCount = PlayerPrefs.GetInt("SavedDays");
+        }
+        ShowStats();
+    }
+    public void ShowStats()
+    {
+        text[0].text = info.money + "";
+        text[1].text = info.ratingMarket + "";
+        text[2].text = dayCount + "";
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,8 +60,9 @@ public class testTime : MonoBehaviour
             }
             time.SetActive(false);
             panelND.SetActive(true);
-            panelND.GetComponent<profitday>().SetNewProfit();
             panelND.GetComponent<profitday>().dayCount += 1;
+            panelND.GetComponent<profitday>().SaveDay();
+            panelND.GetComponent<profitday>().ShowStats();
         }
         if (minuta1 < 10)
         {
