@@ -9,6 +9,7 @@ public class Info : MonoBehaviour
     public List<int> countIceCream; // [0] - berryCount; [1] - chocolateCount; [2] - creamCount; [3] - strawberryCount; [4] - pistachioCount;
     public List<int> priceIC; // [0] - berry; [1] - chocolate; [2] - cream; [3] - strawberry; [4] - pistachio
     public List<GameObject> shopPrice;
+    public List<Text> shopCount;
     public GameObject emptyMoney;
     public int ratingMarket;
     public int countClients;
@@ -24,6 +25,7 @@ public class Info : MonoBehaviour
         for (int i = 0; i < shopPrice.Count; i++)
         {
             shopPrice[i].GetComponent<Text>().text = priceIC[i] + "$";
+            shopCount[i].text = "x" + countIceCream[i];
         }
     }
 
